@@ -2,7 +2,7 @@
 
 Personal portfolio built as a single HTML file. No frameworks, no build step — open directly in the browser.
 
-**Live:** https://codebygiov anna.github.io/Portfolio_Giovanna
+**Live:** https://codebygiovanna.github.io/Portfolio_Giovanna/
 
 ---
 
@@ -39,7 +39,7 @@ portfolio/
 
 1. Push this repo to GitHub
 2. Settings → Pages → Source: `main` / `root`
-3. Done — available at `https://codebygiov anna.github.io/Portfolio_Giovanna`
+3. Done — available at `https://codebygiovanna.github.io/Portfolio_Giovanna/`
 
 ---
 
