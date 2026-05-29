@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en" id="root">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giovanna de Oliveira | Data & Systems Analyst</title>
+  <meta name="description" content="Portfolio profissional de Giovanna de Oliveira, Data & Systems Analyst especializada em Python, SQL e análise de dados. Baseada em Turin, Itália."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23F8F7F4'/><text x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%233D5FA3' text-anchor='middle' font-style='italic'>G</text></svg>" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ── PALETTE */
+    :root{
+      --bg:#F8F7F4;--bg2:#F0EEE9;--surface:#FFFFFF;--border:#E3E0D9;
+      --text:#18181A;--muted:#6C6C70;--subtle:#B5B1AB;
+      --accent:#3D5FA3;--accent-d:rgba(61,95,163,.07);
+      --star-color:rgba(40,40,55,VAR);
+      --shadow:0 1px 3px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.04);
+      --shadow-lg:0 4px 24px rgba(0,0,0,.09);
+    }
+    html.dark{
+      --bg:#0E0E10;--bg2:#14141A;--surface:#1C1C22;--border:#28283A;
+      --text:#EEEDEF;--muted:#87878D;--subtle:#3A3A48;
+      --accent:#6080C5;--accent-d:rgba(96,128,197,.08);
+      --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.2);
+      --shadow-lg:0 4px 24px rgba(0,0,0,.45);
+    }
+
+    /* ── BASE */
+    .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24}
+    html{scroll-behavior:smooth}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none;transition:background .3s,color .3s}
+    a,button{cursor:none}
+    ::selection{background:var(--accent-d)}
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+    /* ── LANDING OVERLAY */
+    #landing{position:fixed;inset:0;z-index:2000;background:#050508;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity .8s ease}
+    #landing.hide{opacity:0;pointer-events:none}
+    #landing-stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    .lc{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:0;text-align:center}
+    #ln{font-family:'Bodoni Moda',serif;font-weight:700;color:#E5E2E1;text-transform:uppercase;letter-spacing:.18em;font-size:clamp(1.4rem,4vw,3.4rem);opacity:0;filter:blur(28px);animation:name-reveal 2s cubic-bezier(.16,1,.3,1) .5s forwards}
+    @keyframes name-reveal{
+      0%{opacity:0;filter:blur(28px);letter-spacing:.5em}
+      70%{opacity:.9;filter:blur(2px);letter-spacing:.22em}
+      100%{opacity:1;filter:blur(0);letter-spacing:.18em}
+    }
+    #lt{font-family:'Plus Jakarta Sans',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:rgba(229,226,225,.4);margin-top:1.5rem;opacity:0;animation:fade-in .9s ease 2.4s forwards}
+    #start-btn{margin-top:3.5rem;padding:14px 52px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.6);font-family:'Plus Jakarta Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;cursor:none;transition:all .35s ease;opacity:0;animation:fade-in .7s ease 3.2s forwards}
+    #start-btn:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.35);color:#fff;transform:scale(1.04);box-shadow:0 0 40px rgba(255,255,255,.04)}
+    #start-btn:active{transform:scale(.98)}
+    @keyframes fade-in{from{opacity:0}to{opacity:1}}
+
+    /* ── SITE STARS (persistent, behind everything) */
+    #site-stars{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+    /* ── CURSOR */
+    #cur-dot{position:fixed;top:0;left:0;width:7px;height:7px;background:var(--accent);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:width .2s,height .2s,opacity .2s;mix-blend-mode:multiply}
+    html.dark #cur-dot{mix-blend-mode:screen}
+    #cur-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid rgba(61,95,163,.35);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width .4s cubic-bezier(.16,1,.3,1),height .4s cubic-bezier(.16,1,.3,1),border-color .3s}
+    body.c-hover #cur-dot{width:0;height:0;opacity:0}
+    body.c-hover #cur-ring{width:54px;height:54px;border-color:rgba(61,95,163,.6)}
+
+    /* ── MOUSE SPARKLES */
+    .spark{position:fixed;pointer-events:none;z-index:9997;border-radius:50%;background:var(--accent);animation:spark-out .75s ease-out forwards}
+    @keyframes spark-out{0%{transform:translate(0,0) scale(1);opacity:.55}100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+
+    /* ── NAV */
+    #nav{position:fixed;top:0;width:100%;z-index:50;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+    #nav.sc{background:rgba(248,247,244,.93);backdrop-filter:blur(16px);border-bottom-color:var(--border)}
+    html.dark #nav.sc{background:rgba(14,14,16,.93)}
+
+    /* ── BRAND */
+    .brand{font-family:'Bodoni Moda',serif;font-style:italic;letter-spacing:-.02em;background:linear-gradient(90deg,var(--text) 0%,var(--text) 38%,var(--accent) 50%,var(--text) 62%,var(--text) 100%);background-size:250% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:background-position .6s ease}
+    .brand:hover{background-position:-60% 0}
+
+    /* ── GLASS */
+    .glass{background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.85)}
+    html.dark .glass{background:rgba(28,28,34,.65);border-color:rgba(255,255,255,.06)}
+    .tb{border:1px solid var(--border)}
+
+    /* ── REVEAL */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.on{opacity:1;transform:translateY(0)}
+    .reveal-l{opacity:0;transform:translateX(-26px);transition:opacity .8s ease,transform .8s ease}
+    .reveal-l.on{opacity:1;transform:translateX(0)}
+
+    /* ── PROJECT CARDS */
+    .pcard{transform-style:preserve-3d;transition:box-shadow .3s;will-change:transform;overflow:hidden;background:var(--surface);border:1px solid var(--border)}
+    .pcard:hover{box-shadow:var(--shadow-lg)}
+
+    /* ── CHART COLORS */
+    .c-bar{fill:var(--accent);opacity:.7}
+    .c-bar-d{fill:var(--accent);opacity:.38}
+    .c-grid{stroke:var(--border)}
+    .c-label{fill:var(--subtle);font-family:'Plus Jakarta Sans',sans-serif}
+    .c-line{stroke:var(--accent)}
+    .c-area{fill:var(--accent);opacity:.07}
+    .c-dot{fill:var(--accent)}
+    .c-anim-bar{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+    .c-anim-hbar{transform-box:fill-box;transform-origin:0% 50%;transform:scaleX(0);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+    .c-anim-path{stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.3s cubic-bezier(.16,1,.3,1)}
+    .reveal.on .c-anim-bar{transform:scaleY(1)}
+    .reveal.on .c-anim-hbar{transform:scaleX(1)}
+    .reveal.on .c-anim-path{stroke-dashoffset:0}
+
+    /* ── MODAL */
+    .modal{position:fixed;inset:0;z-index:200;display:flex;align-items:stretch;opacity:0;pointer-events:none;transition:opacity .35s ease}
+    .modal.open{opacity:1;pointer-events:all}
+    .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)}
+    .modal-panel{position:relative;z-index:1;width:min(720px,100%);margin-left:auto;height:100%;overflow-y:auto;background:var(--surface);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .modal.open .modal-panel{transform:translateX(0)}
+
+    /* ── GALLERY */
+    .gal-track{display:flex;gap:1.5rem;transition:transform .6s cubic-bezier(.16,1,.3,1);will-change:transform}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── SKILL CELL */
+    .sc2{background:var(--surface);border:1px solid var(--border);transition:border-color .2s,box-shadow .2s}
+    .sc2:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+
+    /* ── TIMELINE */
+    .tl-line{background:linear-gradient(180deg,transparent,var(--border) 50%,transparent)}
+
+    /* ── BUTTONS */
+    .btn-p{background:var(--accent);color:#fff;display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:6px;font-size:.82rem;font-weight:700;text-decoration:none;border:none;cursor:none;transition:opacity .2s,transform .15s;letter-spacing:.05em;text-transform:uppercase}
+    .btn-p:hover{opacity:.86;transform:translateY(-1px)}
+    .btn-o{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:6px;font-size:.82rem;font-weight:700;text-decoration:none;background:transparent;color:var(--text);border:1px solid var(--border);cursor:none;transition:border-color .2s,color .2s,transform .15s;letter-spacing:.05em;text-transform:uppercase}
+    .btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+    /* ── CHIP */
+    .chip{display:inline-flex;align-items:center;padding:4px 12px;background:var(--bg2);color:var(--muted);border:1px solid var(--border);border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+
+    /* ── ROBOT */
+    #robot{position:fixed;bottom:24px;right:24px;z-index:100;width:70px;cursor:none;filter:drop-shadow(var(--shadow));transition:transform .3s cubic-bezier(.16,1,.3,1)}
+    #robot:hover{transform:translateY(-5px)}
+
+    /* ── MOBILE MENU */
+    #mm{display:none}
+    #mm.open{display:flex}
+
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal-l{opacity:1;transform:none;transition:none}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+
+<!-- ══ LANDING INTRO ══════════════════════════════════ -->
+<div id="landing">
+  <canvas id="landing-stars"></canvas>
+  <div class="lc">
+    <p id="ln">GIOVANNA DE OLIVEIRA</p>
+    <p id="lt">Data &amp; Systems Analyst</p>
+    <button id="start-btn" onclick="enterSite()">START</button>
+  </div>
+</div>
+
+<!-- ══ PERSISTENT STAR CANVAS ════════════════════════ -->
+<canvas id="site-stars"></canvas>
+
+<!-- ══ CURSORS ════════════════════════════════════════ -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- ══ NAV ═══════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="flex items-center justify-between h-20 px-6 lg:px-14 max-w-[1440px] mx-auto">
+    <a href="#" onclick="scrollTo({top:0,behavior:'smooth'});return false" class="brand text-base no-underline">Giovanna de Oliveira</a>
+
+    <!-- desktop -->
+    <div id="dn" class="hidden md:flex items-center gap-8">
+      <a href="#about"      class="text-[10.5px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--muted)" data-i18n="nav.about">ABOUT</a>
+      <a href="#experience" class="text-[10.5px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--muted)" data-i18n="nav.exp">EXPERIENCE</a>
+      <a href="#projects"   class="text-[10.5px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--muted)" data-i18n="nav.projects">PROJECTS</a>
+      <a href="#skills"     class="text-[10.5px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--muted)" data-i18n="nav.skills">SKILLS</a>
+      <a href="#contact"    class="text-[10.5px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--muted)" data-i18n="nav.contact">CONTACT</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <!-- language flags -->
+      <div class="hidden md:flex items-center gap-1 tb rounded" style="padding:3px;background:var(--bg2)">
+        <button id="btn-pt" onclick="setLang('pt')" class="px-2 py-1 rounded text-[11px] font-bold transition-all" title="Português">🇧🇷 PT</button>
+        <button id="btn-it" onclick="setLang('it')" class="px-2 py-1 rounded text-[11px] font-bold transition-all" title="Italiano">🇮🇹 IT</button>
+        <button id="btn-en" onclick="setLang('en')" class="px-2 py-1 rounded text-[11px] font-bold transition-all" title="English">🇺🇸 EN</button>
+      </div>
+      <!-- theme -->
+      <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center tb rounded" style="color:var(--muted)">
+        <svg id="icon-moon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg id="icon-sun"  width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <!-- cv -->
+      <a href="cv/giovanna-oliveira-cv.pdf" download class="hidden md:inline-flex items-center gap-2 px-4 py-2 tb rounded text-[10.5px] font-bold tracking-[.1em] uppercase transition-all" style="color:var(--muted)" data-i18n="nav.cv">CV</a>
+      <!-- burger -->
+      <button id="bur" onclick="toggleMM()" class="md:hidden w-9 h-9 flex items-center justify-center tb rounded" style="color:var(--muted)">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mm" class="flex-col gap-4 px-8 pb-6 border-t" style="border-color:var(--border);background:var(--bg)">
+    <a href="#about"      onclick="toggleMM()" class="block pt-4 text-[11px] font-bold tracking-[.14em] uppercase" style="color:var(--muted)" data-i18n="nav.about">ABOUT</a>
+    <a href="#experience" onclick="toggleMM()" class="block text-[11px] font-bold tracking-[.14em] uppercase" style="color:var(--muted)" data-i18n="nav.exp">EXPERIENCE</a>
+    <a href="#projects"   onclick="toggleMM()" class="block text-[11px] font-bold tracking-[.14em] uppercase" style="color:var(--muted)" data-i18n="nav.projects">PROJECTS</a>
+    <a href="#skills"     onclick="toggleMM()" class="block text-[11px] font-bold tracking-[.14em] uppercase" style="color:var(--muted)" data-i18n="nav.skills">SKILLS</a>
+    <a href="#contact"    onclick="toggleMM()" class="block text-[11px] font-bold tracking-[.14em] uppercase" style="color:var(--muted)" data-i18n="nav.contact">CONTACT</a>
+    <div class="flex items-center gap-2 pt-2">
+      <button id="btn-pt2" onclick="setLang('pt')" class="text-[11px] font-bold">🇧🇷 PT</button>
+      <button id="btn-it2" onclick="setLang('it')" class="text-[11px] font-bold">🇮🇹 IT</button>
+      <button id="btn-en2" onclick="setLang('en')" class="text-[11px] font-bold">🇺🇸 EN</button>
+    </div>
+  </div>
+</nav>
+
+<main style="padding-top:80px;position:relative;z-index:1">
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section class="relative min-h-screen flex flex-col items-center justify-center px-8 lg:px-16 overflow-hidden" style="background:transparent">
+  <div class="relative z-10 text-center max-w-4xl mx-auto">
+    <div class="inline-flex items-center gap-2 mb-8 px-4 py-2 tb rounded-full glass reveal">
+      <span class="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style="background:#22c55e"></span>
+      <span class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--muted)" data-i18n="hero.badge">DATA &amp; SYSTEMS ANALYST</span>
+    </div>
+    <h1 class="font-['Plus_Jakarta_Sans'] font-semibold mb-6 reveal" style="font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.04em;line-height:1.06;color:var(--text);transition-delay:.1s" data-i18n-html="hero.h1">
+      Transforming raw data into<br/><em class="font-['Bodoni_Moda'] not-italic" style="color:var(--accent);font-style:italic!important">decisive insights.</em>
+    </h1>
+    <p class="mb-10 reveal" style="font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:480px;margin-left:auto;margin-right:auto;transition-delay:.2s" data-i18n="hero.sub">
+      Data &amp; Systems Analyst with hands-on experience in Python, SQL and Jupyter Notebooks. Passionate about turning raw data into clear, actionable decisions.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 mb-12 reveal" style="transition-delay:.3s">
+      <a href="#projects" class="btn-p" data-i18n="hero.cta1">VIEW PROJECTS</a>
+      <a href="cv/giovanna-oliveira-cv.pdf" download class="btn-o" data-i18n="hero.cta2">DOWNLOAD CV</a>
+    </div>
+    <div class="flex items-center justify-center gap-6 reveal" style="transition-delay:.4s">
+      <a href="https://github.com/CodeByGiovanna" target="_blank" rel="noopener" class="text-[11px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--subtle)">GitHub</a>
+      <span style="width:1px;height:14px;background:var(--border)"></span>
+      <a href="https://www.linkedin.com/in/giovanna-oliveira-software-engineer" target="_blank" rel="noopener" class="text-[11px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--subtle)">LinkedIn</a>
+      <span style="width:1px;height:14px;background:var(--border)"></span>
+      <a href="mailto:gioliveira.work@gmail.com" class="text-[11px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--subtle)">Email</a>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="opacity:.28">
+    <span class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--muted)">SCROLL</span>
+    <div style="width:1px;height:36px;background:var(--border)"></div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══════════════════════════════════════════ -->
+<section id="about" style="max-width:1440px;margin:0 auto;padding:8rem 2rem">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-4 reveal-l">
+      <p class="text-[11px] font-bold tracking-[.14em] uppercase mb-5" style="color:var(--accent)" data-i18n="about.label">THE PHILOSOPHY</p>
+      <p class="mb-5" style="font-size:1.3rem;line-height:1.6;color:var(--text)" data-i18n-html="about.philosophy">I believe every dataset tells a <em class="font-['Bodoni_Moda'] italic" style="color:var(--accent)">story</em>. My job is to find it and turn it into decisions.</p>
+      <p style="font-size:.95rem;line-height:1.8;color:var(--muted)" data-i18n="about.text">ADS student at INFNET with hands-on experience in Python, SQL and data analysis. Projects in web scraping, EDA and relational database modeling.</p>
+      <div class="flex items-center gap-2 mt-6">
+        <span class="w-2 h-2 rounded-full" style="background:#22c55e"></span>
+        <span class="text-[11px] font-bold tracking-widest uppercase" style="color:var(--muted)" data-i18n="hero.badge">DATA &amp; SYSTEMS ANALYST</span>
+      </div>
+    </div>
+    <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="sc2 p-8 flex flex-col justify-between rounded-lg reveal" style="transition-delay:.1s;aspect-ratio:1">
+        <span class="font-['Bodoni_Moda'] font-bold" style="font-size:3rem;letter-spacing:-.04em;color:var(--accent)">3</span>
+        <div><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-1" style="color:var(--text)" data-i18n="s1t">PROJECTS</p><p style="font-size:.8rem;color:var(--muted)" data-i18n="s1d">Python, SQL & data analysis on GitHub.</p></div>
+      </div>
+      <div class="sc2 p-8 flex flex-col justify-between rounded-lg reveal" style="transition-delay:.2s;aspect-ratio:1">
+        <span class="font-['Bodoni_Moda'] font-bold" style="font-size:3rem;letter-spacing:-.04em;color:var(--accent)">4</span>
+        <div><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-1" style="color:var(--text)" data-i18n="s2t">LANGUAGES</p><p style="font-size:.8rem;color:var(--muted)" data-i18n="s2d">Portuguese, Italian, Spanish & English.</p></div>
+      </div>
+      <div class="sc2 p-8 flex flex-col justify-between rounded-lg reveal" style="transition-delay:.3s;aspect-ratio:1">
+        <span class="font-['Bodoni_Moda'] font-bold" style="font-size:3rem;letter-spacing:-.04em;color:var(--accent)">ADS</span>
+        <div><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-1" style="color:var(--text)" data-i18n="s3t">DEGREE</p><p style="font-size:.8rem;color:var(--muted)" data-i18n="s3d">Systems Analysis & Dev · INFNET · 2025.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURED PROJECTS ══════════════════════════════ -->
+<section id="projects" style="padding:0 0 8rem">
+  <div style="max-width:1440px;margin:0 auto;padding:0 2rem">
+    <div class="flex items-end justify-between mb-10 reveal">
+      <h2 class="font-['Bodoni_Moda'] font-bold" style="font-size:clamp(3rem,7vw,6rem);letter-spacing:-.04em;line-height:1;color:var(--text)" data-i18n="proj.title">Featured Projects</h2>
+      <button onclick="openGallery()" class="hidden md:inline-flex items-center gap-2 text-[11px] font-bold tracking-[.14em] uppercase mb-2 transition-colors" style="color:var(--muted);background:none;border:none" data-i18n="proj.all">VIEW ALL →</button>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+      <!-- Card 1 -->
+      <div class="pcard rounded-lg reveal" style="transition-delay:.05s">
+        <div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:1.2rem 1rem .5rem;overflow:hidden">
+          <svg viewBox="0 0 300 150" width="100%">
+            <line x1="42" y1="115" x2="292" y2="115" class="c-grid" stroke-width="1"/>
+            <line x1="42" y1="87" x2="292" y2="87" class="c-grid" stroke-width=".5" stroke-dasharray="3,3"/>
+            <line x1="42" y1="59" x2="292" y2="59" class="c-grid" stroke-width=".5" stroke-dasharray="3,3"/>
+            <rect class="c-bar  c-anim-bar" x="59"  y="30" width="30" height="85"  rx="3" style="transition-delay:.05s"/>
+            <rect class="c-bar-d c-anim-bar" x="101" y="42" width="30" height="73" rx="3" style="transition-delay:.18s"/>
+            <rect class="c-bar  c-anim-bar" x="143" y="14" width="30" height="101" rx="3" style="transition-delay:.31s"/>
+            <rect class="c-bar-d c-anim-bar" x="185" y="54" width="30" height="61" rx="3" style="transition-delay:.44s"/>
+            <rect class="c-bar  c-anim-bar" x="227" y="46" width="30" height="69"  rx="3" style="transition-delay:.57s"/>
+            <text x="74"  y="128" text-anchor="middle" font-size="7" class="c-label">Fantasy</text>
+            <text x="116" y="128" text-anchor="middle" font-size="7" class="c-label">Science</text>
+            <text x="158" y="128" text-anchor="middle" font-size="7" class="c-label">Mystery</text>
+            <text x="200" y="128" text-anchor="middle" font-size="7" class="c-label">Romance</text>
+            <text x="242" y="128" text-anchor="middle" font-size="7" class="c-label">Art</text>
+          </svg>
+        </div>
+        <div style="padding:1.5rem">
+          <p class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)">01 / PYTHON · WEB SCRAPING</p>
+          <h3 class="font-semibold mb-2" style="font-size:1.05rem;color:var(--text)" data-i18n="p1t">Book Scraper</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.65" data-i18n="p1d">Python scraper collecting book data and exporting to CSV for analysis.</p>
+          <div class="flex flex-wrap gap-2 mt-4 mb-4"><span class="chip">Python</span><span class="chip">BeautifulSoup</span><span class="chip">CSV</span></div>
+          <button onclick="openModal('m1')" class="btn-p text-[11px]" style="padding:9px 18px" data-i18n="proj.open">VIEW CASE STUDY →</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="pcard rounded-lg reveal" style="transition-delay:.15s">
+        <div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:1.2rem 1rem .5rem;overflow:hidden">
+          <svg viewBox="0 0 300 150" width="100%">
+            <line x1="42" y1="115" x2="292" y2="115" class="c-grid" stroke-width="1"/>
+            <line x1="42" y1="87" x2="292" y2="87" class="c-grid" stroke-width=".5" stroke-dasharray="3,3"/>
+            <line x1="42" y1="59" x2="292" y2="59" class="c-grid" stroke-width=".5" stroke-dasharray="3,3"/>
+            <path class="c-area" d="M42,76 C66,76 82,54 108,54 C134,54 150,36 176,36 C202,36 218,64 244,64 L244,115 L42,115 Z"/>
+            <path class="c-line c-anim-path" d="M42,76 C66,76 82,54 108,54 C134,54 150,36 176,36 C202,36 218,64 244,64" fill="none" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="42"  cy="76" r="3.5" class="c-dot"/><circle cx="108" cy="54" r="3.5" class="c-dot"/>
+            <circle cx="176" cy="36" r="3.5" class="c-dot"/><circle cx="244" cy="64" r="3.5" class="c-dot"/>
+            <text x="42"  y="128" text-anchor="middle" font-size="7" class="c-label">2019</text>
+            <text x="108" y="128" text-anchor="middle" font-size="7" class="c-label">2020</text>
+            <text x="176" y="128" text-anchor="middle" font-size="7" class="c-label">2021</text>
+            <text x="244" y="128" text-anchor="middle" font-size="7" class="c-label">2022</text>
+          </svg>
+        </div>
+        <div style="padding:1.5rem">
+          <p class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)">02 / PYTHON · SQL · PANDAS</p>
+          <h3 class="font-semibold mb-2" style="font-size:1.05rem;color:var(--text)" data-i18n="p2t">Data Analysis — Python &amp; SQL</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.65" data-i18n="p2d">Hands-on EDA with Python and SQL on a movie ratings dataset (2017–2022).</p>
+          <div class="flex flex-wrap gap-2 mt-4 mb-4"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span></div>
+          <button onclick="openModal('m2')" class="btn-p text-[11px]" style="padding:9px 18px" data-i18n="proj.open">VIEW CASE STUDY →</button>
+        </div>
+      </div>
+
+      <!-- Card 3 full width -->
+      <div class="pcard rounded-lg lg:col-span-2 reveal" style="transition-delay:.25s">
+        <div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:1.2rem 1rem .5rem;overflow:hidden">
+          <svg viewBox="0 0 600 125" width="100%">
+            <line x1="90" y1="10" x2="90" y2="115" class="c-grid" stroke-width="1"/>
+            <line x1="500" y1="10" x2="500" y2="115" class="c-grid" stroke-width=".5"/>
+            <text x="88" y="27"  text-anchor="end" font-size="8" class="c-label" font-weight="600">Raw</text>
+            <text x="88" y="54"  text-anchor="end" font-size="8" class="c-label" font-weight="600">1NF</text>
+            <text x="88" y="81"  text-anchor="end" font-size="8" class="c-label" font-weight="600">2NF</text>
+            <text x="88" y="108" text-anchor="end" font-size="8" class="c-label" font-weight="600">3NF</text>
+            <rect class="c-bar-d c-anim-hbar" x="90" y="13"  width="410" height="21" rx="3" style="transition-delay:.05s"/>
+            <rect class="c-bar   c-anim-hbar" x="90" y="40"  width="296" height="21" rx="3" style="opacity:.55;transition-delay:.2s"/>
+            <rect class="c-bar   c-anim-hbar" x="90" y="67"  width="198" height="21" rx="3" style="opacity:.75;transition-delay:.35s"/>
+            <rect class="c-bar   c-anim-hbar" x="90" y="94"  width="115" height="21" rx="3" style="opacity:.95;transition-delay:.5s"/>
+            <text x="506" y="28"  font-size="7" class="c-label">100%</text>
+            <text x="392" y="55"  font-size="7" class="c-label">72%</text>
+            <text x="294" y="82"  font-size="7" class="c-label">48%</text>
+            <text x="211" y="109" font-size="7" class="c-label">28%</text>
+          </svg>
+        </div>
+        <div style="padding:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+          <div>
+            <p class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)">03 / SQL · DB MODELING</p>
+            <h3 class="font-semibold mb-1" style="font-size:1.05rem;color:var(--text)" data-i18n="p3t">Relational DB Modeling — Virtual Store</h3>
+            <p style="font-size:.85rem;color:var(--muted);line-height:1.65;max-width:500px" data-i18n="p3d">Database normalization from 1NF to 3NF — 72% redundancy reduction.</p>
+            <div class="flex flex-wrap gap-2 mt-3"><span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">Normalization</span></div>
+          </div>
+          <button onclick="openModal('m3')" class="btn-p text-[11px] flex-shrink-0" style="padding:9px 18px" data-i18n="proj.open">VIEW CASE STUDY →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GITHUB GALLERY ═════════════════════════════════ -->
+<div id="gal" style="display:none;padding:0 0 8rem">
+  <div style="max-width:1440px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+    <div>
+      <h3 class="font-['Bodoni_Moda'] font-bold" style="font-size:2rem;letter-spacing:-.03em;color:var(--text)" data-i18n="proj.gal">More on GitHub</h3>
+      <p style="font-size:.8rem;color:var(--muted);margin-top:.25rem">Fetched live from github.com/CodeByGiovanna</p>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="slideGal(-1)" id="gal-prev" class="w-10 h-10 tb rounded flex items-center justify-center" style="background:var(--surface)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+      <button onclick="slideGal(1)"  id="gal-next" class="w-10 h-10 tb rounded flex items-center justify-center" style="background:var(--surface)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+      <button onclick="closeGallery()" class="w-10 h-10 tb rounded flex items-center justify-center" style="background:var(--surface);color:var(--muted)">✕</button>
+    </div>
+  </div>
+  <div style="overflow:hidden;padding:0 2rem">
+    <div id="gal-track" class="gal-track" style="max-width:1440px;margin:0 auto">
+      <!-- populated by JS -->
+      <div id="gal-loading" style="width:100%;padding:4rem 2rem;text-align:center;color:var(--muted)">
+        <div style="display:inline-block;width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite"></div>
+        <p style="margin-top:1rem;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase">Loading repositories…</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REPO MODAL (dynamic) ═══════════════════════════ -->
+<div id="repo-modal" class="modal" onclick="if(event.target===this||event.target.classList.contains('modal-bg'))closeRepoModal()">
+  <div class="modal-bg"></div>
+  <div class="modal-panel">
+    <div style="padding:2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1">
+      <p id="rm-type" class="text-[10px] font-bold tracking-[.14em] uppercase" style="color:var(--accent)">GITHUB PROJECT</p>
+      <button onclick="closeRepoModal()" class="btn-o" style="padding:6px 14px;font-size:11px">CLOSE ✕</button>
+    </div>
+    <div style="padding:2rem">
+      <!-- cover -->
+      <div id="rm-cover" style="height:160px;border-radius:8px;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg2);border:1px solid var(--border)">
+        <span id="rm-initials" class="font-['Bodoni_Moda'] font-bold" style="font-size:4rem;letter-spacing:-.04em;opacity:.35;color:var(--accent)">G</span>
+      </div>
+      <h2 id="rm-name" class="font-['Bodoni_Moda'] font-bold mb-2" style="font-size:1.8rem;letter-spacing:-.03em;color:var(--text)">Project Name</h2>
+      <div id="rm-meta" class="flex flex-wrap gap-3 mb-6" style="font-size:.75rem;color:var(--muted)"></div>
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div>
+          <h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)">DESCRIPTION</h3>
+          <p id="rm-desc" style="font-size:.9rem;color:var(--muted);line-height:1.75">—</p>
+        </div>
+        <div>
+          <h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-3" style="color:var(--accent)">TECHNOLOGIES</h3>
+          <div id="rm-chips" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div>
+          <h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)">STATUS</h3>
+          <div id="rm-status" class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></span><span style="font-size:.85rem;color:var(--muted)">Active</span></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--border);margin-top:2rem">
+        <a id="rm-gh-link" href="#" target="_blank" rel="noopener" class="btn-p">VIEW ON GITHUB →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROJECT MODALS ════════════════════════════════ -->
+<div id="m1" class="modal" onclick="handleModalClick(event,'m1')"><div class="modal-bg"></div>
+  <div class="modal-panel"><div style="padding:2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1"><p class="text-[10px] font-bold tracking-[.14em] uppercase" style="color:var(--accent)">01 / PYTHON · WEB SCRAPING</p><button onclick="closeModal('m1')" class="btn-o" style="padding:6px 14px;font-size:11px">CLOSE ✕</button></div>
+    <div style="padding:2rem"><h2 class="font-['Bodoni_Moda'] font-bold mb-6" style="font-size:2rem;letter-spacing:-.03em;color:var(--text)" data-i18n="p1t">Book Scraper</h2>
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mc">THE CHALLENGE</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m1c">Extract structured data from Books to Scrape with no API, navigating 50+ category pages.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mp">THE PROCESS</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m1p">Built with BeautifulSoup4 and Requests — multi-page navigation, data cleaning, CSV export pipeline.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mr">THE RESULT</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m1r">1000+ book records across 5 categories exported as clean, structured CSV.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-3" style="color:var(--accent)" data-i18n="mt">TECHNOLOGIES</h3><div class="flex flex-wrap gap-2"><span class="chip">Python</span><span class="chip">BeautifulSoup4</span><span class="chip">Requests</span><span class="chip">CSV</span></div></div>
+        <a href="https://github.com/CodeByGiovanna/projeto_livraria" target="_blank" rel="noopener" class="btn-p" style="width:fit-content" data-i18n="mg">VIEW ON GITHUB →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="m2" class="modal" onclick="handleModalClick(event,'m2')"><div class="modal-bg"></div>
+  <div class="modal-panel"><div style="padding:2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1"><p class="text-[10px] font-bold tracking-[.14em] uppercase" style="color:var(--accent)">02 / PYTHON · SQL · PANDAS</p><button onclick="closeModal('m2')" class="btn-o" style="padding:6px 14px;font-size:11px">CLOSE ✕</button></div>
+    <div style="padding:2rem"><h2 class="font-['Bodoni_Moda'] font-bold mb-6" style="font-size:2rem;letter-spacing:-.03em;color:var(--text)" data-i18n="p2t">Data Analysis</h2>
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mc">THE CHALLENGE</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m2c">Derive meaningful insights from a raw movie ratings dataset spanning 2017–2022.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mp">THE PROCESS</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m2p">EDA with Pandas in Jupyter Notebook, advanced SQL queries to identify trends and visualize rating patterns.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mr">THE RESULT</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m2r">Identified key rating trends and genre patterns, documented in reproducible Jupyter notebooks.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-3" style="color:var(--accent)" data-i18n="mt">TECHNOLOGIES</h3><div class="flex flex-wrap gap-2"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">Jupyter</span></div></div>
+        <a href="https://github.com/CodeByGiovanna/data-analysis-with-python-sql" target="_blank" rel="noopener" class="btn-p" style="width:fit-content" data-i18n="mg">VIEW ON GITHUB →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="m3" class="modal" onclick="handleModalClick(event,'m3')"><div class="modal-bg"></div>
+  <div class="modal-panel"><div style="padding:2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1"><p class="text-[10px] font-bold tracking-[.14em] uppercase" style="color:var(--accent)">03 / SQL · DB MODELING</p><button onclick="closeModal('m3')" class="btn-o" style="padding:6px 14px;font-size:11px">CLOSE ✕</button></div>
+    <div style="padding:2rem"><h2 class="font-['Bodoni_Moda'] font-bold mb-6" style="font-size:2rem;letter-spacing:-.03em;color:var(--text)" data-i18n="p3t">Relational DB Modeling</h2>
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mc">THE CHALLENGE</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m3c">Virtual store database with massive redundancy — update anomalies and integrity issues.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mp">THE PROCESS</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m3p">Applied normalization forms: 1NF (atomic values), 2NF (partial dependencies), 3NF (transitive dependencies).</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)" data-i18n="mr">THE RESULT</h3><p style="font-size:.9rem;color:var(--muted);line-height:1.75" data-i18n="m3r">72% reduction in data redundancy. Improved integrity and query performance across all normalized tables.</p></div>
+        <div><h3 class="text-[10px] font-bold tracking-[.14em] uppercase mb-3" style="color:var(--accent)" data-i18n="mt">TECHNOLOGIES</h3><div class="flex flex-wrap gap-2"><span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">DB Modeling</span><span class="chip">Normalization</span></div></div>
+        <a href="https://github.com/CodeByGiovanna/Modelagem-Relacional-Loja-Virtual" target="_blank" rel="noopener" class="btn-p" style="width:fit-content" data-i18n="mg">VIEW ON GITHUB →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SKILLS ════════════════════════════════════════ -->
+<section id="skills" style="padding:0 0 8rem;background:var(--bg2)">
+  <div style="max-width:1440px;margin:0 auto;padding:5rem 2rem 0">
+    <p class="text-[11px] font-bold tracking-[.3em] uppercase text-center mb-12 reveal" style="color:var(--muted)" data-i18n="sk.label">TECHNICAL ARSENAL</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <div class="sc2 p-10 flex flex-col items-center gap-3 rounded-lg group"><span class="material-symbols-outlined text-5xl transition-colors" style="color:var(--subtle);font-variation-settings:'FILL' 1">analytics</span><p class="text-[11px] font-bold tracking-[.1em] uppercase" style="color:var(--text)" data-i18n="sk1">DATA ANALYSIS</p><p class="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity" style="color:var(--accent)">Python · Pandas · EDA</p></div>
+      <div class="sc2 p-10 flex flex-col items-center gap-3 rounded-lg group"><span class="material-symbols-outlined text-5xl transition-colors" style="color:var(--subtle);font-variation-settings:'FILL' 1">database</span><p class="text-[11px] font-bold tracking-[.1em] uppercase" style="color:var(--text)" data-i18n="sk2">DATABASES</p><p class="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity" style="color:var(--accent)">SQL · MySQL · 1NF–3NF</p></div>
+      <div class="sc2 p-10 flex flex-col items-center gap-3 rounded-lg group"><span class="material-symbols-outlined text-5xl transition-colors" style="color:var(--subtle);font-variation-settings:'FILL' 1">travel_explore</span><p class="text-[11px] font-bold tracking-[.1em] uppercase" style="color:var(--text)" data-i18n="sk3">WEB SCRAPING</p><p class="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity" style="color:var(--accent)">BeautifulSoup · Requests</p></div>
+      <div class="sc2 p-10 flex flex-col items-center gap-3 rounded-lg group"><span class="material-symbols-outlined text-5xl transition-colors" style="color:var(--subtle);font-variation-settings:'FILL' 1">smart_toy</span><p class="text-[11px] font-bold tracking-[.1em] uppercase" style="color:var(--text)" data-i18n="sk4">AI TOOLS</p><p class="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity" style="color:var(--accent)">Claude · ChatGPT</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE / TIMELINE ═════════════════════════ -->
+<section id="experience" style="max-width:1440px;margin:0 auto;padding:8rem 2rem">
+  <h2 class="font-['Bodoni_Moda'] font-bold mb-16 reveal" style="font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.04em;color:var(--text)" data-i18n="exp.title">Experience</h2>
+  <div class="relative">
+    <div class="tl-line absolute left-0 md:left-1/2 top-0 bottom-0" style="width:1px"></div>
+    <div class="relative flex flex-col md:flex-row gap-8 pb-14 group reveal">
+      <div class="md:w-1/2 md:text-right md:pr-14"><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--accent)">2025 — PRESENT</p><h3 class="font-semibold mb-1" style="font-size:1.15rem;color:var(--text)" data-i18n="t1r">ADS Student</h3><p class="text-[11px] font-bold tracking-[.12em] uppercase" style="color:var(--muted)">INFNET · RIO DE JANEIRO</p></div>
+      <div class="absolute left-[-4px] md:left-[calc(50%-4px)] top-1 w-2 h-2 rounded-full group-hover:scale-150 transition-transform duration-300" style="background:var(--accent);outline:4px solid var(--bg)"></div>
+      <div class="md:w-1/2 md:pl-14"><ul class="space-y-3" style="font-size:.875rem;color:var(--muted)"><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t1a">Studying Systems Analysis & Development (ADS).</span></li><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t1b">Focus on Python, SQL, data modeling and web development.</span></li></ul></div>
+    </div>
+    <div class="relative flex flex-col md:flex-row gap-8 pb-14 group reveal" style="transition-delay:.1s">
+      <div class="md:w-1/2 md:text-right md:pr-14"><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--muted)">2025</p><h3 class="font-semibold mb-1" style="font-size:1.15rem;color:var(--text)" data-i18n="t2r">Relational DB Modeling</h3><p class="text-[11px] font-bold tracking-[.12em] uppercase" style="color:var(--muted)">PERSONAL PROJECT</p></div>
+      <div class="absolute left-[-4px] md:left-[calc(50%-4px)] top-1 w-2 h-2 rounded-full ring-4 group-hover:bg-[color:var(--accent)] transition-colors duration-300" style="background:var(--subtle)"></div>
+      <div class="md:w-1/2 md:pl-14"><ul class="space-y-3" style="font-size:.875rem;color:var(--muted)"><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t2a">Applied 1NF, 2NF, 3NF normalization to a virtual store DB.</span></li><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t2b">72% data redundancy reduction through systematic normalization.</span></li></ul></div>
+    </div>
+    <div class="relative flex flex-col md:flex-row gap-8 pb-14 group reveal" style="transition-delay:.2s">
+      <div class="md:w-1/2 md:text-right md:pr-14"><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--muted)">2024 — 2025</p><h3 class="font-semibold mb-1" style="font-size:1.15rem;color:var(--text)" data-i18n="t3r">Data Analysis — Python &amp; SQL</h3><p class="text-[11px] font-bold tracking-[.12em] uppercase" style="color:var(--muted)">PERSONAL PROJECT</p></div>
+      <div class="absolute left-[-4px] md:left-[calc(50%-4px)] top-1 w-2 h-2 rounded-full ring-4 group-hover:bg-[color:var(--accent)] transition-colors duration-300" style="background:var(--subtle)"></div>
+      <div class="md:w-1/2 md:pl-14"><ul class="space-y-3" style="font-size:.875rem;color:var(--muted)"><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t3a">Explored movie ratings dataset spanning 2017–2022.</span></li><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t3b">Advanced SQL queries, Pandas EDA, trend visualization.</span></li></ul></div>
+    </div>
+    <div class="relative flex flex-col md:flex-row gap-8 group reveal" style="transition-delay:.3s">
+      <div class="md:w-1/2 md:text-right md:pr-14"><p class="text-[11px] font-bold tracking-[.14em] uppercase mb-2" style="color:var(--muted)">2024</p><h3 class="font-semibold mb-1" style="font-size:1.15rem;color:var(--text)" data-i18n="t4r">Book Scraper</h3><p class="text-[11px] font-bold tracking-[.12em] uppercase" style="color:var(--muted)">PERSONAL PROJECT</p></div>
+      <div class="absolute left-[-4px] md:left-[calc(50%-4px)] top-1 w-2 h-2 rounded-full ring-4 group-hover:bg-[color:var(--accent)] transition-colors duration-300" style="background:var(--subtle)"></div>
+      <div class="md:w-1/2 md:pl-14"><ul class="space-y-3" style="font-size:.875rem;color:var(--muted)"><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t4a">Python scraper collecting 1000+ book records.</span></li><li class="flex gap-3"><span style="color:var(--accent);flex-shrink:0">—</span><span data-i18n="t4b">BeautifulSoup pipeline exporting clean CSV for analysis.</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ════════════════════════════════════════ -->
+<section id="contact" style="padding:0 2rem 9rem">
+  <div style="max-width:1440px;margin:0 auto">
+    <div class="tb glass rounded-xl reveal" style="padding:5rem 4rem;text-align:center;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-80px;right:-80px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,var(--accent-d) 0%,transparent 70%);pointer-events:none"></div>
+      <h2 class="font-['Bodoni_Moda'] font-bold mb-4" style="font-size:clamp(2.4rem,6vw,4.5rem);letter-spacing:-.04em;color:var(--text)" data-i18n-html="ct">Ready to turn data<br/>into insight?</h2>
+      <p style="font-size:1rem;color:var(--muted);margin-bottom:2.5rem;max-width:380px;margin-left:auto;margin-right:auto" data-i18n="cs">Have a project in mind? Let's build something meaningful.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="mailto:gioliveira.work@gmail.com" class="btn-p" data-i18n="cc1">GET IN TOUCH</a>
+        <a href="https://www.linkedin.com/in/giovanna-oliveira-software-engineer" target="_blank" rel="noopener" class="btn-o" data-i18n="cc2">LINKEDIN</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════ -->
+<footer style="background:var(--bg2);border-top:1px solid var(--border);position:relative;z-index:1">
+  <div style="max-width:1440px;margin:0 auto;padding:3rem 2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem">
+    <span class="font-['Bodoni_Moda'] font-bold" style="font-size:clamp(1.8rem,5vw,3.8rem);letter-spacing:-.04em;color:var(--text)">GIOVANNA DE OLIVEIRA</span>
+    <div class="flex flex-col items-end gap-4">
+      <div class="flex gap-8">
+        <a href="https://github.com/CodeByGiovanna" target="_blank" rel="noopener" class="text-[11px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--subtle)">GITHUB</a>
+        <a href="https://www.linkedin.com/in/giovanna-oliveira-software-engineer" target="_blank" rel="noopener" class="text-[11px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--subtle)">LINKEDIN</a>
+        <a href="mailto:gioliveira.work@gmail.com" class="text-[11px] font-bold tracking-[.14em] uppercase transition-colors" style="color:var(--subtle)">EMAIL</a>
+      </div>
+      <p class="text-[10px] font-bold tracking-[.1em] uppercase" style="color:var(--subtle);opacity:.45" data-i18n="fc">© 2025 GIOVANNA DE OLIVEIRA — ALL RIGHTS RESERVED</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ ROBOT ══════════════════════════════════════════ -->
+<div id="robot" title="Watching you 👀">
+  <svg viewBox="0 0 72 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="36" y1="3" x2="36" y2="14" stroke="var(--border)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="36" cy="3" r="3" fill="var(--accent)"><animate attributeName="r" values="3;4.5;3" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.4;1" dur="2s" repeatCount="indefinite"/></circle>
+    <rect x="8" y="13" width="56" height="46" rx="14" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5"/>
+    <circle cx="24" cy="34" r="10" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+    <circle cx="48" cy="34" r="10" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+    <circle id="pl" cx="24" cy="34" r="5" fill="var(--accent)"/>
+    <circle id="pr" cx="48" cy="34" r="5" fill="var(--accent)"/>
+    <circle cx="26" cy="32" r="1.5" fill="white" opacity=".55" style="pointer-events:none"/>
+    <circle cx="50" cy="32" r="1.5" fill="white" opacity=".55" style="pointer-events:none"/>
+    <path id="rmouth" d="M 26 50 Q 36 57 46 50" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round"/>
+    <rect x="16" y="61" width="40" height="30" rx="10" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5"/>
+    <circle cx="36" cy="76" r="5" fill="var(--accent)" opacity=".22"/>
+    <circle cx="36" cy="76" r="4" fill="var(--accent)" opacity=".6"><animate attributeName="opacity" values=".6;.15;.6" dur="1.8s" repeatCount="indefinite"/></circle>
+  </svg>
+</div>
+
+<!-- ══ JS ════════════════════════════════════════════ -->
+<script>
+/* ══ LANDING ══════════════════════════════════════ */
+(function(){
+  const landing = document.getElementById('landing');
+  const entered = sessionStorage.getItem('site_entered');
+  if(entered){ landing.style.display='none'; return; }
+  document.body.style.overflow='hidden';
+
+  /* Landing star canvas */
+  const lc = document.getElementById('landing-stars');
+  const lctx = lc.getContext('2d');
+  let LW, LH;
+  const N=90, stars=[];
+  const t0=Date.now();
+
+  function lresize(){ LW=lc.width=lc.offsetWidth; LH=lc.height=lc.offsetHeight; }
+  lresize(); window.addEventListener('resize',lresize);
+
+  for(let i=0;i<N;i++) stars.push({
+    x:Math.random()*LW, y:Math.random()*LH,
+    r:Math.random()*1.2+.4,
+    vx:(Math.random()-.5)*.08, vy:(Math.random()-.5)*.08,
+    opacity:0, target:Math.random()*.7+.25,
+    delay:300+Math.random()*1600,
+    tk:Math.random()*.002+.0008, tkd:1
+  });
+
+  function ldraw(){
+    lctx.clearRect(0,0,LW,LH);
+    const el=Date.now()-t0;
+    stars.forEach(s=>{
+      if(el>s.delay) s.opacity=Math.min(s.target,s.opacity+.008);
+      s.opacity+=s.tk*s.tkd;
+      if(s.opacity>=s.target) s.tkd=-1;
+      if(s.opacity<=s.target*.3) s.tkd=1;
+      s.x+=s.vx; s.y+=s.vy;
+      if(s.x<0)s.x=LW; if(s.x>LW)s.x=0;
+      if(s.y<0)s.y=LH; if(s.y>LH)s.y=0;
+      lctx.beginPath();
+      lctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      lctx.fillStyle=`rgba(255,255,255,${Math.max(0,s.opacity)})`;
+      lctx.fill();
+    });
+    if(landing.style.display!=='none') requestAnimationFrame(ldraw);
+  }
+  ldraw();
+})();
+
+window.enterSite=function(){
+  sessionStorage.setItem('site_entered','1');
+  const landing=document.getElementById('landing');
+  const name=document.getElementById('ln');
+  // dissolve name
+  name.style.transition='opacity .55s ease,filter .55s ease,letter-spacing .55s ease';
+  name.style.opacity='0'; name.style.filter='blur(24px)'; name.style.letterSpacing='.5em';
+  // fade overlay
+  setTimeout(()=>{landing.style.transition='opacity .75s ease';landing.style.opacity='0';},380);
+  setTimeout(()=>{landing.style.display='none';document.body.style.overflow='';},1100);
+};
+
+/* ══ SITE STARS (persistent) ══════════════════════ */
+(function(){
+  const c=document.getElementById('site-stars');
+  const ctx=c.getContext('2d');
+  let W,H;
+  const N=160, ss=[];
+
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=window.innerHeight;
+  }
+  resize(); window.addEventListener('resize',resize);
+
+  for(let i=0;i<N;i++) ss.push({
+    x:Math.random()*W, y:Math.random()*H,
+    r:Math.random()*1.1+.3,
+    vx:(Math.random()-.5)*.06, vy:(Math.random()-.5)*.06,
+    base:Math.random()*.5+.15,
+    tk:Math.random()*.0015+.0005, tkd:Math.random()>.5?1:-1,
+    opacity:Math.random()*.4+.1
+  });
+
+  function isDark(){return document.getElementById('root').classList.contains('dark')}
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const dark=isDark();
+    const col=dark?'255,255,255':'35,35,50';
+    ss.forEach(s=>{
+      s.opacity+=s.tk*s.tkd;
+      if(s.opacity>=s.base+.15) s.tkd=-1;
+      if(s.opacity<=s.base-.12) s.tkd=1;
+      s.x+=s.vx; s.y+=s.vy;
+      if(s.x<0)s.x=W; if(s.x>W)s.x=0;
+      if(s.y<0)s.y=H; if(s.y>H)s.y=0;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      const a=dark?Math.max(0,s.opacity*.45):Math.max(0,s.opacity*.25);
+      ctx.fillStyle=`rgba(${col},${a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ══ THEME ════════════════════════════════════════ */
+function toggleTheme(){
+  const r=document.getElementById('root'),d=r.classList.toggle('dark');
+  localStorage.setItem('theme',d?'dark':'light');
+  document.getElementById('icon-moon').style.display=d?'block':'none';
+  document.getElementById('icon-sun').style.display=d?'none':'block';
+}
+(function(){
+  const s=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme:dark)').matches;
+  const d=s?s==='dark':p;
+  document.getElementById('root').classList.toggle('dark',d);
+  document.getElementById('icon-moon').style.display=d?'block':'none';
+  document.getElementById('icon-sun').style.display=d?'none':'block';
+})();
+
+/* ══ NAV SCROLL ═══════════════════════════════════ */
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('sc',scrollY>20)},{passive:true});
+function toggleMM(){document.getElementById('mm').classList.toggle('open')}
+
+/* ══ i18n ═════════════════════════════════════════ */
+const I={
+  en:{
+    'nav.about':'ABOUT','nav.exp':'EXPERIENCE','nav.projects':'PROJECTS','nav.skills':'SKILLS','nav.contact':'CONTACT','nav.cv':'CV',
+    'hero.badge':'DATA & SYSTEMS ANALYST',
+    'hero.h1':'Transforming raw data into<br/><em class="font-[\'Bodoni_Moda\'] not-italic" style="color:var(--accent);font-style:italic!important">decisive insights.</em>',
+    'hero.sub':'Data & Systems Analyst with hands-on experience in Python, SQL and Jupyter Notebooks.',
+    'hero.cta1':'VIEW PROJECTS','hero.cta2':'DOWNLOAD CV',
+    'about.label':'THE PHILOSOPHY',
+    'about.philosophy':'I believe every dataset tells a <em class="font-[\'Bodoni_Moda\'] italic" style="color:var(--accent)">story</em>. My job is to find it and turn it into decisions.',
+    'about.text':'ADS student at INFNET with hands-on experience in Python, SQL and data analysis.',
+    's1t':'PROJECTS','s1d':'Python, SQL & data analysis on GitHub.',
+    's2t':'LANGUAGES','s2d':'Portuguese, Italian, Spanish & English.',
+    's3t':'DEGREE','s3d':'Systems Analysis & Dev · INFNET · 2025.',
+    'proj.title':'Featured Projects','proj.all':'VIEW ALL →','proj.open':'VIEW CASE STUDY →','proj.gal':'All Projects',
+    'p1t':'Book Scraper','p1d':'Python scraper collecting book data and exporting to CSV.',
+    'p2t':'Data Analysis — Python & SQL','p2d':'Hands-on EDA with Python and SQL on a movie ratings dataset.',
+    'p3t':'Relational DB Modeling — Virtual Store','p3d':'Database normalization 1NF→3NF — 72% redundancy reduction.',
+    'sk.label':'TECHNICAL ARSENAL','sk1':'DATA ANALYSIS','sk2':'DATABASES','sk3':'WEB SCRAPING','sk4':'AI TOOLS',
+    'exp.title':'Experience',
+    't1r':'ADS Student','t1a':'Studying Systems Analysis & Development.','t1b':'Focus on Python, SQL, data modeling and web development.',
+    't2r':'Relational DB Modeling','t2a':'Applied 1NF, 2NF, 3NF normalization to a virtual store DB.','t2b':'72% data redundancy reduction through systematic normalization.',
+    't3r':'Data Analysis — Python & SQL','t3a':'Explored movie ratings dataset spanning 2017–2022.','t3b':'Advanced SQL queries, Pandas EDA, trend visualization.',
+    't4r':'Book Scraper','t4a':'Python scraper collecting 1000+ book records.','t4b':'BeautifulSoup pipeline exporting clean CSV.',
+    'mc':'THE CHALLENGE','mp':'THE PROCESS','mr':'THE RESULT','mt':'TECHNOLOGIES','mg':'VIEW ON GITHUB →',
+    'm1c':'Extract structured data from Books to Scrape with no API, navigating 50+ category pages.',
+    'm1p':'Built with BeautifulSoup4 and Requests — multi-page navigation, data cleaning, CSV export.',
+    'm1r':'1000+ book records across 5 categories exported as clean, structured CSV.',
+    'm2c':'Derive meaningful insights from a raw movie ratings dataset spanning 2017–2022.',
+    'm2p':'EDA with Pandas in Jupyter, advanced SQL queries to identify trends and visualize patterns.',
+    'm2r':'Identified key rating trends and genre patterns, documented in reproducible notebooks.',
+    'm3c':'Virtual store database with massive redundancy — update anomalies and integrity issues.',
+    'm3p':'Applied normalization: 1NF (atomic values), 2NF (partial deps), 3NF (transitive deps).',
+    'm3r':'72% redundancy reduction. Improved integrity and query performance across all tables.',
+    'ct':'Ready to turn data<br/>into insight?','cs':'Have a project in mind? Let\'s build something meaningful.',
+    'cc1':'GET IN TOUCH','cc2':'LINKEDIN',
+    'fc':'© 2025 GIOVANNA DE OLIVEIRA — ALL RIGHTS RESERVED',
+  },
+  pt:{
+    'nav.about':'SOBRE','nav.exp':'EXPERIÊNCIA','nav.projects':'PROJETOS','nav.skills':'HABILIDADES','nav.contact':'CONTATO','nav.cv':'CV',
+    'hero.badge':'DATA & SYSTEMS ANALYST',
+    'hero.h1':'Transformando dados brutos em<br/><em class="font-[\'Bodoni_Moda\'] not-italic" style="color:var(--accent);font-style:italic!important">insights decisivos.</em>',
+    'hero.sub':'Data & Systems Analyst com experiência em Python, SQL e Jupyter Notebooks.',
+    'hero.cta1':'VER PROJETOS','hero.cta2':'BAIXAR CURRÍCULO',
+    'about.label':'A FILOSOFIA',
+    'about.philosophy':'Acredito que cada dataset conta uma <em class="font-[\'Bodoni_Moda\'] italic" style="color:var(--accent)">história</em>. Meu trabalho é encontrá-la.',
+    'about.text':'Estudante de ADS no INFNET com experiência em Python, SQL e análise de dados.',
+    's1t':'PROJETOS','s1d':'Python, SQL e análise de dados no GitHub.',
+    's2t':'IDIOMAS','s2d':'Português, Italiano, Espanhol & Inglês.',
+    's3t':'FORMAÇÃO','s3d':'Análise e Desenvolvimento de Sistemas · INFNET · 2025.',
+    'proj.title':'Projetos em Destaque','proj.all':'VER TODOS →','proj.open':'VER CASE STUDY →','proj.gal':'Todos os Projetos',
+    'p1t':'Book Scraper','p1d':'Scraper Python que coleta dados de livros e exporta para CSV.',
+    'p2t':'Análise de Dados — Python & SQL','p2d':'EDA prático com Python e SQL em dataset de avaliações de filmes.',
+    'p3t':'Modelagem Relacional — Loja Virtual','p3d':'Normalização de BD 1FN→3FN — redução de 72% na redundância.',
+    'sk.label':'ARSENAL TÉCNICO','sk1':'ANÁLISE DE DADOS','sk2':'BANCOS DE DADOS','sk3':'WEB SCRAPING','sk4':'FERRAMENTAS IA',
+    'exp.title':'Experiência',
+    't1r':'Estudante ADS','t1a':'Estudando Análise e Desenvolvimento de Sistemas.','t1b':'Foco em Python, SQL, modelagem de dados e desenvolvimento web.',
+    't2r':'Modelagem Relacional DB','t2a':'Apliquei 1FN, 2FN e 3FN em banco de dados de loja virtual.','t2b':'Redução de 72% na redundância através de normalização sistemática.',
+    't3r':'Análise de Dados — Python & SQL','t3a':'Exploração de dataset de avaliações de filmes (2017–2022).','t3b':'Consultas SQL avançadas, EDA com Pandas e visualização de tendências.',
+    't4r':'Book Scraper','t4a':'Scraper Python coletando 1000+ registros de livros.','t4b':'Pipeline BeautifulSoup exportando CSV limpo para análise.',
+    'mc':'O DESAFIO','mp':'O PROCESSO','mr':'O RESULTADO','mt':'TECNOLOGIAS','mg':'VER NO GITHUB →',
+    'm1c':'Extrair dados estruturados de um site de livros sem API, navegando por 50+ páginas.',
+    'm1p':'Criado com BeautifulSoup4 e Requests — navegação multi-página, limpeza de dados, pipeline CSV.',
+    'm1r':'1000+ registros de livros em 5 categorias exportados como CSV limpo e estruturado.',
+    'm2c':'Derivar insights de um dataset bruto de avaliações de filmes ao longo de vários anos.',
+    'm2p':'EDA com Pandas no Jupyter, consultas SQL avançadas para identificar tendências e padrões.',
+    'm2r':'Tendências de avaliação e padrões por gênero identificados em notebooks reproduzíveis.',
+    'm3c':'Banco de dados de loja virtual com grande redundância — anomalias e problemas de integridade.',
+    'm3p':'Normalização aplicada: 1FN (valores atômicos), 2FN (deps parciais), 3FN (deps transitivas).',
+    'm3r':'72% de redução na redundância. Integridade e eficiência melhoradas em todas as tabelas.',
+    'ct':'Pronto para transformar<br/>dados em insight?','cs':'Tem um projeto em mente? Vamos construir algo significativo.',
+    'cc1':'ENTRAR EM CONTATO','cc2':'LINKEDIN',
+    'fc':'© 2025 GIOVANNA DE OLIVEIRA — TODOS OS DIREITOS RESERVADOS',
+  },
+  it:{
+    'nav.about':'CHI SONO','nav.exp':'ESPERIENZA','nav.projects':'PROGETTI','nav.skills':'COMPETENZE','nav.contact':'CONTATTO','nav.cv':'CV',
+    'hero.badge':'DATA & SYSTEMS ANALYST',
+    'hero.h1':'Trasformando dati grezzi in<br/><em class="font-[\'Bodoni_Moda\'] not-italic" style="color:var(--accent);font-style:italic!important">insight decisivi.</em>',
+    'hero.sub':'Data & Systems Analyst con esperienza pratica in Python, SQL e Jupyter Notebooks.',
+    'hero.cta1':'VEDI PROGETTI','hero.cta2':'SCARICA CV',
+    'about.label':'LA FILOSOFIA',
+    'about.philosophy':'Credo che ogni dataset racconti una <em class="font-[\'Bodoni_Moda\'] italic" style="color:var(--accent)">storia</em>. Il mio lavoro è trovarla.',
+    'about.text':'Studentessa ADS all\'INFNET con esperienza in Python, SQL e analisi dati.',
+    's1t':'PROGETTI','s1d':'Python, SQL e analisi dati su GitHub.',
+    's2t':'LINGUE','s2d':'Portoghese, Italiano, Spagnolo & Inglese.',
+    's3t':'PERCORSO','s3d':'Analisi e Sviluppo Sistemi · INFNET · 2025.',
+    'proj.title':'Progetti in Evidenza','proj.all':'VEDI TUTTI →','proj.open':'VEDI CASE STUDY →','proj.gal':'Tutti i Progetti',
+    'p1t':'Book Scraper','p1d':'Scraper Python che raccoglie dati di libri ed esporta in CSV.',
+    'p2t':'Analisi Dati — Python & SQL','p2d':'EDA pratico con Python e SQL su dataset di valutazioni film.',
+    'p3t':'Modellazione DB Relazionale — Negozio Virtuale','p3d':'Normalizzazione DB 1NF→3NF — riduzione del 72% della ridondanza.',
+    'sk.label':'ARSENALE TECNICO','sk1':'ANALISI DATI','sk2':'DATABASE','sk3':'WEB SCRAPING','sk4':'STRUMENTI AI',
+    'exp.title':'Esperienza',
+    't1r':'Studentessa ADS','t1a':'Studio di Analisi e Sviluppo di Sistemi.','t1b':'Focus su Python, SQL, modellazione dati e sviluppo web.',
+    't2r':'Modellazione DB Relazionale','t2a':'Applicato 1NF, 2NF, 3NF a un database di negozio virtuale.','t2b':'Riduzione del 72% della ridondanza tramite normalizzazione.',
+    't3r':'Analisi Dati — Python & SQL','t3a':'Esplorato dataset di valutazioni film dal 2017 al 2022.','t3b':'Query SQL avanzate, EDA con Pandas, visualizzazione trend.',
+    't4r':'Book Scraper','t4a':'Scraper Python raccogliendo 1000+ record di libri.','t4b':'Pipeline BeautifulSoup che esporta CSV pulito per l\'analisi.',
+    'mc':'LA SFIDA','mp':'IL PROCESSO','mr':'IL RISULTATO','mt':'TECNOLOGIE','mg':'VEDI SU GITHUB →',
+    'm1c':'Estrarre dati strutturati da un sito di libri senza API, gestendo 50+ pagine.',
+    'm1p':'Creato con BeautifulSoup4 e Requests — navigazione multi-pagina, pulizia dati, pipeline CSV.',
+    'm1r':'1000+ record di libri in 5 categorie esportati come CSV pulito e strutturato.',
+    'm2c':'Ricavare insight da un dataset grezzo di valutazioni film nel corso di più anni.',
+    'm2p':'EDA con Pandas in Jupyter, query SQL avanzate per identificare trend e pattern.',
+    'm2r':'Trend di valutazione e pattern per genere identificati in notebook riproducibili.',
+    'm3c':'Database di un negozio virtuale con grande ridondanza — anomalie e problemi di integrità.',
+    'm3p':'Normalizzazione: 1NF (valori atomici), 2NF (dipendenze parziali), 3NF (transitive).',
+    'm3r':'72% di riduzione della ridondanza. Integrità e prestazioni migliorate in tutte le tabelle.',
+    'ct':'Pronto a trasformare<br/>i dati in insight?','cs':'Hai un progetto? Costruiamo qualcosa di significativo insieme.',
+    'cc1':'CONTATTAMI','cc2':'LINKEDIN',
+    'fc':'© 2025 GIOVANNA DE OLIVEIRA — TUTTI I DIRITTI RISERVATI',
+  }
+};
+let lang='en';
+function setLang(l){lang=l;localStorage.setItem('lang',l);applyLang()}
+function applyLang(){
+  const d=I[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!==undefined)el.textContent=d[k]});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(d[k]!==undefined)el.innerHTML=d[k]});
+  ['en','pt','it'].forEach(l2=>{
+    ['','2'].forEach(s=>{
+      const b=document.getElementById('btn-'+l2+s);if(!b)return;
+      b.style.background=l2===lang?'var(--accent)':'transparent';
+      b.style.color=l2===lang?'#fff':'';b.style.borderRadius='4px';
+    });
+  });
+  document.getElementById('root').lang=lang==='pt'?'pt-BR':lang==='it'?'it':'en';
+  // update landing subtitle
+  const lt=document.getElementById('lt');
+  if(lt) lt.textContent=lang==='pt'?'Analista de Dados e Sistemas':lang==='it'?'Data & Systems Analyst':'Data & Systems Analyst';
+}
+(function(){const s=localStorage.getItem('lang');if(s)lang=s;applyLang()})();
+
+/* ══ SCROLL REVEAL ════════════════════════════════ */
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-l').forEach(el=>ro.observe(el));
+
+/* ══ CUSTOM CURSOR ════════════════════════════════ */
+(function(){
+  const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+  let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+  (function tick(){dot.style.left=mx+'px';dot.style.top=my+'px';rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+  document.querySelectorAll('a,button,.pcard,.sc2').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('c-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('c-hover'));
+  });
+  document.addEventListener('mouseleave',()=>{dot.style.opacity='0';ring.style.opacity='0'});
+  document.addEventListener('mouseenter',()=>{dot.style.opacity='1';ring.style.opacity='1'});
+})();
+
+/* ══ MOUSE SPARKLES ═══════════════════════════════ */
+(function(){
+  let last=0;
+  document.addEventListener('mousemove',e=>{
+    const now=Date.now();if(now-last<60)return;last=now;
+    const s=document.createElement('div');s.className='spark';
+    s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';
+    s.style.width=s.style.height=(Math.random()*3+3)+'px';
+    s.style.setProperty('--dx',(Math.random()-.5)*32+'px');
+    s.style.setProperty('--dy',-(Math.random()*28+12)+'px');
+    s.style.opacity=Math.random()*.4+.2;
+    document.body.appendChild(s);
+    s.addEventListener('animationend',()=>s.remove());
+  },{passive:true});
+})();
+
+/* ══ 3D TILT ══════════════════════════════════════ */
+(function(){
+  document.querySelectorAll('.pcard').forEach(c=>{
+    let tx=0,ty=0,cx=0,cy=0;
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect();
+      tx=(e.clientY-r.top)/r.height-.5;
+      ty=(e.clientX-r.left)/r.width-.5;
+    });
+    c.addEventListener('mouseleave',()=>{tx=0;ty=0});
+    (function tick(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;const s=(Math.abs(cx)>.02||Math.abs(cy)>.02)?1.02:1;c.style.transform=`perspective(800px) rotateX(${cx*-7}deg) rotateY(${cy*7}deg) scale(${s})`;requestAnimationFrame(tick)})();
+  });
+})();
+
+/* ══ MODALS ════════════════════════════════════════ */
+function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';robotReact('curious')}
+function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}
+function handleModalClick(e,id){if(e.target===document.getElementById(id)||e.target.classList.contains('modal-bg'))closeModal(id)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>{m.classList.remove('open');document.body.style.overflow=''})});
+
+/* ══ GALLERY — GitHub API ═════════════════════════ */
+const FEATURED = ['projeto_livraria','data-analysis-with-python-sql','Modelagem-Relacional-Loja-Virtual'];
+const LANG_COLORS = {Python:'#3776AB',JavaScript:'#F0DB4F',HTML:'#E34F26',CSS:'#1572B6',SQL:'#336791','Jupyter Notebook':'#F37626',TypeScript:'#3178C6',Shell:'#89E051'};
+let galIdx=0, galRepos=[], galLoaded=false;
+
+function openGallery(){
+  const s=document.getElementById('gal');
+  s.style.display='block';
+  s.scrollIntoView({behavior:'smooth',block:'start'});
+  if(!galLoaded) fetchGitHubRepos();
+}
+function closeGallery(){document.getElementById('gal').style.display='none'}
+
+async function fetchGitHubRepos(){
+  try{
+    const res = await fetch('https://api.github.com/users/CodeByGiovanna/repos?sort=updated&per_page=30');
+    if(!res.ok) throw new Error('API error');
+    const data = await res.json();
+    galRepos = data.filter(r => !FEATURED.includes(r.name) && !r.fork);
+    galLoaded = true;
+    renderGallery();
+  } catch(e){
+    document.getElementById('gal-loading').innerHTML =
+      '<p style="font-size:.85rem;color:var(--muted);padding:2rem">Unable to load repositories. <a href="https://github.com/CodeByGiovanna" target="_blank" rel="noopener" style="color:var(--accent)">Visit GitHub →</a></p>';
+  }
+}
+
+function makeRepoCover(repo){
+  const lang = repo.language || 'Data';
+  const col = LANG_COLORS[lang] || 'var(--accent)';
+  const init = repo.name.replace(/-|_/g,' ').split(' ').map(w=>w[0]||'').join('').toUpperCase().slice(0,2);
+  return `<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg2) 0%,var(--surface) 100%);position:relative;overflow:hidden">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.06" viewBox="0 0 200 160" preserveAspectRatio="none">
+      <rect x="20" y="20" width="160" height="2" fill="${col}"/>
+      <rect x="20" y="40" width="100" height="2" fill="${col}"/>
+      <rect x="20" y="60" width="130" height="2" fill="${col}"/>
+      <rect x="20" y="80" width="80"  height="2" fill="${col}"/>
+      <rect x="20" y="100" width="110" height="2" fill="${col}"/>
+      <rect x="20" y="120" width="60" height="2" fill="${col}"/>
+    </svg>
+    <span style="font-family:'Bodoni Moda',serif;font-size:3.5rem;font-weight:700;letter-spacing:-.04em;color:${col};opacity:.45">${init}</span>
+  </div>`;
+}
+
+function renderGallery(){
+  const track = document.getElementById('gal-track');
+  if(galRepos.length === 0){
+    track.innerHTML = '<p style="padding:3rem 1rem;font-size:.85rem;color:var(--muted)">All projects are already featured above. <a href="https://github.com/CodeByGiovanna" target="_blank" rel="noopener" style="color:var(--accent)">View on GitHub →</a></p>';
+    return;
+  }
+  track.innerHTML = galRepos.map((r,i) => {
+    const lang = r.language || 'General';
+    const col  = LANG_COLORS[lang] || 'var(--accent)';
+    const upd  = new Date(r.updated_at).toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+    return `<div class="pcard rounded-lg flex-shrink-0" style="width:300px;display:flex;flex-direction:column">
+      <div style="height:140px;overflow:hidden;border-bottom:1px solid var(--border)">${makeRepoCover(r)}</div>
+      <div style="padding:1.25rem;display:flex;flex-direction:column;flex:1">
+        <p style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${col};margin-bottom:.4rem">${lang.toUpperCase()}</p>
+        <h4 style="font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.5rem;line-height:1.3">${r.name.replace(/-|_/g,' ')}</h4>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.6;flex:1">${r.description || 'No description available.'}</p>
+        <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:10px;color:var(--subtle)">Updated ${upd}</span>
+          <button onclick="openRepoModal(${i})" class="btn-o" style="padding:6px 14px;font-size:10px;letter-spacing:.06em">VIEW →</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  galIdx = 0;
+  document.getElementById('gal-track').style.transform = 'translateX(0)';
+}
+
+function slideGal(dir){
+  const t=document.getElementById('gal-track');
+  const cards=t.querySelectorAll('.pcard');
+  if(!cards.length)return;
+  galIdx=Math.max(0,Math.min(cards.length-1,galIdx+dir));
+  t.style.transform=`translateX(-${galIdx*(cards[0].offsetWidth+24)}px)`;
+}
+
+/* ══ REPO MODAL ═══════════════════════════════════ */
+function openRepoModal(idx){
+  const r = galRepos[idx];
+  if(!r) return;
+  const lang = r.language || 'General';
+  const col  = LANG_COLORS[lang] || 'var(--accent)';
+  const upd  = new Date(r.updated_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  document.getElementById('rm-type').textContent = (lang + ' · GITHUB PROJECT').toUpperCase();
+  document.getElementById('rm-name').textContent = r.name.replace(/-|_/g,' ');
+  document.getElementById('rm-desc').textContent = r.description || 'No description available.';
+  document.getElementById('rm-cover').innerHTML = makeRepoCover(r);
+  document.getElementById('rm-initials').remove?.();
+  document.getElementById('rm-meta').innerHTML =
+    `<span style="display:inline-flex;align-items:center;gap:4px"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 6v6l4 2"/></svg>Updated ${upd}</span>
+     ${r.stargazers_count?`<span>⭐ ${r.stargazers_count}</span>`:''}
+     ${r.forks_count?`<span>🍴 ${r.forks_count}`:''}`;
+
+  const chips = document.getElementById('rm-chips');
+  chips.innerHTML = '';
+  [lang, ...( r.topics||[] )].filter(Boolean).forEach(t=>{
+    const c=document.createElement('span');c.className='chip';c.textContent=t;chips.appendChild(c);
+  });
+
+  document.getElementById('rm-status').innerHTML =
+    `<span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></span>
+     <span style="font-size:.85rem;color:var(--muted)">Active · Last update ${new Date(r.updated_at).toLocaleDateString('en-GB',{month:'short',year:'numeric'})}</span>`;
+
+  document.getElementById('rm-gh-link').href = r.html_url;
+
+  document.getElementById('repo-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  robotReact('curious');
+}
+function closeRepoModal(){
+  document.getElementById('repo-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ══ ROBOT ════════════════════════════════════════ */
+(function(){
+  const pl=document.getElementById('pl'),pr=document.getElementById('pr'),robot=document.getElementById('robot');
+  document.addEventListener('mousemove',e=>{
+    const r=robot.getBoundingClientRect();
+    const ang=Math.atan2(e.clientY-(r.top+r.height*.38),e.clientX-(r.left+r.width/2));
+    const M=3.5,dx=Math.cos(ang)*M,dy=Math.sin(ang)*M;
+    pl.setAttribute('cx',24+dx);pl.setAttribute('cy',34+dy);
+    pr.setAttribute('cx',48+dx);pr.setAttribute('cy',34+dy);
+  },{passive:true});
+  function blink(){
+    pl.style.transformBox=pr.style.transformBox='fill-box';
+    pl.style.transformOrigin=pr.style.transformOrigin='center';
+    pl.style.transform=pr.style.transform='scaleY(0.1)';
+    setTimeout(()=>{pl.style.transform=pr.style.transform=''},110);
+    setTimeout(blink,Math.random()*4000+2500);
+  }
+  setTimeout(blink,2000);
+})();
+function robotReact(mood){
+  const m=document.getElementById('rmouth');
+  if(mood==='curious')m.setAttribute('d','M 26 52 Q 36 46 46 52');
+  setTimeout(()=>m.setAttribute('d','M 26 50 Q 36 57 46 50'),1800);
+}
+document.querySelectorAll('button,a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.getElementById('rmouth').setAttribute('d','M 28 52 Q 36 58 44 52'));
+  el.addEventListener('mouseleave',()=>document.getElementById('rmouth').setAttribute('d','M 26 50 Q 36 57 46 50'));
+});
+</script>
+</body>
+</html>
