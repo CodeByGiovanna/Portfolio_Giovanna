@@ -2,7 +2,8 @@
 
 Personal portfolio built as a single HTML file. No frameworks, no build step — open directly in the browser.
 
-**Live:** [GitHub Pages link here after deploy]
+**Live:** https://codebygiovanna.github.io/Portfolio_Giovanna
+
 
 ---
 
