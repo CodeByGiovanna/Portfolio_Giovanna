@@ -31,7 +31,7 @@ Personal portfolio built as a single HTML file. No frameworks, no build step —
 portfolio/
 ├── index.html          ← entire portfolio
 ├── cv/
-│   └── giovanna-oliveira-cv.pdf
+│   └── giovanna-cv.pdf
 └── .gitignore
 ```
 
